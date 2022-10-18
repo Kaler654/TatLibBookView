@@ -716,3 +716,18 @@ svg {
 }
 
 /* ---------------------------------------------------------------------------- */
+
+/*==================Translate popup======================*/
+
+.translate__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.translate__word {
+    flex: 1 1 50%;
+}
+
+.translate__btn {
+    flex: 1 1 50%;
+}

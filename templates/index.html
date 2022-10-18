@@ -27,6 +27,7 @@
 
     <!-- Reader -->
     <script src="../static/js/reader.js"></script>
+    <link rel="stylesheet" href="../../SelectTextTest/style.css">
 
     <!-- Plugins -->
     <!-- <script src="js/plugins/search.js"></script> -->
@@ -37,6 +38,19 @@
 
 </head>
 <body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css"
+      rel="stylesheet">
+
+<div class="translate" style="display: none">
+    <div class="translate__content">
+        <div class="translate__word">translate</div>
+        <a href="#" class="translate__btn">Добавить в словарик</a>
+    </div>
+</div>
+
 <div id="sidebar">
     <div id="panels">
         <!-- <input id="searchBox" placeholder="search" type="search"> -->
@@ -82,9 +96,9 @@
     </div>
 
     <div id="divider"></div>
-    <div id="prev" class="arrow">‹</div>
+    <div id="prev" class="arrow" onclick="setTimeout(wrapP, 500);">‹</div>
     <div id="viewer"></div>
-    <div id="next" class="arrow">›</div>
+    <div id="next" class="arrow" onclick="setTimeout(wrapP, 500);">›</div>
 
     <div id="loader"><img src="../static/img/loader.gif"></div>
 </div>
@@ -113,18 +127,37 @@
     };
 </script>
 <script>
-    function wrapTest() {
-        let paragraphs, body, index;
-        body = document.getElementsByTagName("body");
-        paragraphs = document.querySelectorAll('p');
-// for (index = 0; index < paragraphs.length; ++index) {
-//     console.log(a[index]);
-// }
 
-        console.log(paragraphs);
+    function wrapWords(str, tmpl) {
+        return str.replace(/(?<!(<\/?[^>]*|&[^;]*))([^\s<]+)/g, '$1<span data-jbox-content="$2" data-jbox-title="Title 1" class="word" style="cursor: pointer">$2</span>');
     }
 
-    setTimeout(wrapTest, 5000);
+    function wrapP() {
+        let paragraphs, body, index, iframe, iframeHtml, iframeHtmlText, link;
+        iframe = document.querySelectorAll('iframe')[0];
+        iframeHtmlText = iframe.getAttribute("srcdoc");
+        iframeHtml = document.createElement('html');
+        iframeHtml.innerHTML = iframeHtmlText;
+        paragraphs = iframeHtml.querySelectorAll("p.b");
+        console.log(iframeHtml);
+
+        for (index = 0; index < paragraphs.length; ++index) {
+            let paragraph, pText;
+            paragraph = paragraphs[index];
+            pText = paragraph.textContent;
+            wrapText = wrapWords(pText);
+            paragraph.innerHTML = wrapText;
+        }
+        console.log(iframeHtml.innerHTML)
+        link = iframeHtml.querySelectorAll("link")[0].getAttribute("href");
+        // link = URL.createObjectURL("blob:null/12026dde-a2f0-48f8-8bc1-6a61773430b1");
+        console.log(URL.createObjectURL(link));
+        // console.log(iframe.getAttribute("srcdoc"));
+
+    }
+
+    setTimeout(wrapP, 1000);
+
 </script>
 </body>
 </html>
