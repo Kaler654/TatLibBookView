@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/popup.css">
 
+    <link rel="stylesheet" href="../static/css/modalWindow.css">
+    <script src="../static/js/modalWindow.js"></script>
+
     <script src="../static/js/jquery.min.js"></script>
 
     <script src="../static/js/zip.min.js"></script>
@@ -43,13 +46,6 @@
 <script src="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/StephanWagner/jBox@v1.3.2/dist/jBox.all.min.css"
       rel="stylesheet">
-
-<div class="translate" style="display: none">
-    <div class="translate__content">
-        <div class="translate__word">translate</div>
-        <a href="#" class="translate__btn">Добавить в словарик</a>
-    </div>
-</div>
 
 <div id="sidebar">
     <div id="panels">
@@ -96,9 +92,9 @@
     </div>
 
     <div id="divider"></div>
-    <div id="prev" class="arrow" onclick="setTimeout(wrapP, 500);">‹</div>
+    <div id="prev" class="arrow">‹</div>
     <div id="viewer"></div>
-    <div id="next" class="arrow" onclick="setTimeout(wrapP, 500);">›</div>
+    <div id="next" class="arrow">›</div>
 
     <div id="loader"><img src="../static/img/loader.gif"></div>
 </div>
@@ -120,43 +116,43 @@
 
     document.onreadystatechange = function () {
         if (document.readyState == "complete") {
-            window.reader = ePubReader("https://www.litres.ru/pub/t/67253804-Ahunzh_anova_R._Sh_Hre_Bil_Rd_Kunakta_Gos.epub", {
+            window.reader = ePubReader("https://www.litres.ru/pub/t/67253817-Ibrahimov_G._Ukuchyihmuky._Galimzh_An_Ibrahimov_T_Rz.epub", {
+                //https://www.litres.ru/pub/t/67253804-Ahunzh_anova_R._Sh_Hre_Bil_Rd_Kunakta_Gos.epub
+                //https://www.litres.ru/pub/t/67253817-Ibrahimov_G._Ukuchyihmuky._Galimzh_An_Ibrahimov_T_Rz.epub
                 restore: true
             });
         }
     };
+
 </script>
 <script>
 
-    function wrapWords(str, tmpl) {
-        return str.replace(/(?<!(<\/?[^>]*|&[^;]*))([^\s<]+)/g, '$1<span data-jbox-content="$2" data-jbox-title="Title 1" class="word" style="cursor: pointer">$2</span>');
-    }
+    function getIframeSelectionText(iframe) {
+        let win = iframe.contentWindow;
+        let doc = iframe.contentDocument || win.document;
 
-    function wrapP() {
-        let paragraphs, body, index, iframe, iframeHtml, iframeHtmlText, link;
-        iframe = document.querySelectorAll('iframe')[0];
-        iframeHtmlText = iframe.getAttribute("srcdoc");
-        iframeHtml = document.createElement('html');
-        iframeHtml.innerHTML = iframeHtmlText;
-        paragraphs = iframeHtml.querySelectorAll("p.b");
-        console.log(iframeHtml);
-
-        for (index = 0; index < paragraphs.length; ++index) {
-            let paragraph, pText;
-            paragraph = paragraphs[index];
-            pText = paragraph.textContent;
-            wrapText = wrapWords(pText);
-            paragraph.innerHTML = wrapText;
+        if (win.getSelection) {
+            return win.getSelection().toString();
+        } else if (doc.selection && doc.selection.createRange) {
+            return doc.selection.createRange().text;
         }
-        console.log(iframeHtml.innerHTML)
-        link = iframeHtml.querySelectorAll("link")[0].getAttribute("href");
-        // link = URL.createObjectURL("blob:null/12026dde-a2f0-48f8-8bc1-6a61773430b1");
-        console.log(URL.createObjectURL(link));
-        // console.log(iframe.getAttribute("srcdoc"));
-
     }
 
-    setTimeout(wrapP, 1000);
+    function startSelect() {
+        document.querySelectorAll("iframe")[0].contentDocument.addEventListener('mouseup', event => {
+            let iframe = document.querySelectorAll("iframe")[0];
+            let selectText = getIframeSelectionText(iframe);
+            console.log(selectText);
+            if (document.querySelectorAll(".modal-window").length < 1) {
+                new ModalWindow('<h1>Title</h1>').show();
+            }
+
+        });
+    }
+
+    setInterval(startSelect, 1000)
+
+
 
 </script>
 </body>

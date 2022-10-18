@@ -3358,7 +3358,6 @@ EPUBJS.Reader = function (bookPath, _options) {
         height: "100%",
     });
 
-
     this.rendition.themes.default({
         p: {
             "font-size": '24px',

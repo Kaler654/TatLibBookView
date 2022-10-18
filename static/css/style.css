@@ -719,15 +719,120 @@ svg {
 
 /*==================Translate popup======================*/
 
-.translate__content {
+.modal {
+    display: none;
+}
+
+.modal.active .modal-content {
+    transform: rotateX(0) !important;
+}
+
+.modal .modal-wrapper {
+    position: absolute;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 2000px;
 }
 
-.translate__word {
-    flex: 1 1 50%;
+.modal .modal-wrapper .modal-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    transition: all 0.4s;
+    z-index: 5;
 }
 
-.translate__btn {
-    flex: 1 1 50%;
+.modal .modal-wrapper .modal-content {
+    position: relative;
+    z-index: 10;
+    width: 500px;
+    max-width: 90%;
+    background-color: #220c54;
+    color: #fff;
+    border-radius: 4px;
+    transform-style: preserve-3d;
+    transform: rotateX(-70deg);
+    transition: transform 0.5s;
+}
+
+.modal .modal-wrapper .modal-content .modal-header {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    cursor: all-scroll;
+}
+
+.modal .modal-wrapper .modal-content .modal-header .modal-title {
+    font-size: 30px;
+}
+
+.modal .modal-wrapper .modal-content .modal-header .modal-close {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    padding: 10px;
+    font-size: 40px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transform: translateY(-50%) translateY(-5px);
+    transition: all 0.4s;
+}
+
+.modal .modal-wrapper .modal-content .modal-header .modal-close:hover {
+    color: #5fc6da;
+}
+
+.modal .modal-wrapper .modal-content .modal-body {
+    padding: 20px 30px;
+    font-size: 17px;
+    line-height: 25px;
+}
+
+.modal .modal-wrapper .modal-content .modal-action {
+    padding: 10px 30px 20px;
+}
+
+.modal .modal-wrapper .modal-content .modal-action .close {
+    background-color: #d0098d;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 2px;
+    transition: all 0.4s;
+}
+
+.modal .modal-wrapper .modal-content .modal-action .close:hover {
+    background-color: #af0576;
+}
+
+a.show {
+    background-color: #4e2b9e;
+    padding: 10px 15px;
+    border-radius: 3px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.4s;
+}
+
+a.show:hover {
+    background-color: #220c54;
+}
+
+.content {
+    margin: 12px;
+    color: #220c54;
+    font-weight: bold;
 }

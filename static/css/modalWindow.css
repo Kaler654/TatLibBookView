@@ -1,0 +1,40 @@
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 9999999;
+}
+
+.modal-window {
+    position: fixed;
+    background: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-size: 15px;
+    z-index: 9999999;
+    border-radius: 10px;
+}
+
+.modal-content {
+    margin: 100px 50px;
+    z-index: 9999999;
+}
+
+.modal-moving {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: move;
+    z-index: 9999999;
+}
