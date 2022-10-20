@@ -1,1 +1,1 @@
-from .models import Users, Books, Words, Questions, Possible_answers, users_to_books, users_to_words
+from .models import Users, Books, Words, Questions, Possible_answers, Users_to_books, Users_to_words

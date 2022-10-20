@@ -11,21 +11,25 @@
     -ms-user-select: none;
     user-select: none;
     z-index: 9999999;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-window {
     position: fixed;
     background: white;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 12px 6px rgba(34, 60, 80, 0.2);
     color: black;
     font-size: 15px;
     z-index: 9999999;
     border-radius: 10px;
+    width: 400px;
 }
 
 .modal-content {
-    margin: 100px 50px;
+    margin: 15px 15px;
     z-index: 9999999;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-moving {
@@ -37,4 +41,30 @@
     user-select: none;
     cursor: move;
     z-index: 9999999;
+}
+
+.word_tat {
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.modal__translate {
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    margin-bottom: 50px;
+
+}
+
+.modal__btn {
+    width: 146px;
+    color: #fff;
+    border-radius: 3px;
+    background-size: 22px;
+    padding: 9px 7px 9px 7px;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #0061a1;
+    text-align: center;
 }

@@ -3373,7 +3373,7 @@ EPUBJS.Reader = function (bookPath, _options) {
     this.rendition.themes.register("light", "../static/css/themes.css");
     this.rendition.themes.register("tan", "../static/css/themes.css");
 
-    this.rendition.themes.select("dark");
+    this.rendition.themes.select("light");
 
 
     if (this.settings.previousLocationCfi) {

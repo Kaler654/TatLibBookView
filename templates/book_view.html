@@ -91,9 +91,9 @@
     </div>
 
     <div id="divider"></div>
-    <div id="prev" class="arrow">‹</div>
+    <div id="prev" class="arrow" onclick="setTimeout(startSelect, 500)">‹</div>
     <div id="viewer"></div>
-    <div id="next" class="arrow">›</div>
+    <div id="next" class="arrow" onclick="setTimeout(startSelect, 500)">›</div>
 
     <div id="loader"><img src="../static/img/loader.gif"></div>
 </div>
@@ -162,7 +162,8 @@
                 let data = JSON.parse(this.responseText);
                 let translate = data["translate"];
                 if (document.querySelectorAll(".modal-window").length < 1) {
-                    let htmlModal = '<div class="modal__translate">text</div>'.replace("text", translate);
+                    let htmlModal = '<div class="modal__translate"><span class="word_tat">tat_word</span> — <span class="word_ru">ru_word</span></div>'.replace("tat_word", selectedText).replace("ru_word", translate) +
+                        '<span class="modal__btn" onclick="addWordToDictionary()">Добавить в словарик</span>';
                     new ModalWindow(htmlModal).show();
                     delIframeSelection(document.querySelectorAll("iframe")[0])
                     console.log("onreadystatechange")
@@ -181,6 +182,7 @@
             console.log(selectText.length)
             if ((selectText.length > 1) && (selectText.length < 200)) {
                 console.log(selectText)
+                console.log(selectText.length)
                 if (document.querySelectorAll(".modal-window").length < 1) {
                     getTranslate(selectText);
                 }
@@ -188,7 +190,29 @@
         });
     }
 
-    setTimeout(startSelect, 1000)
+    function addWordToDictionary() {
+        let word_tat = document.querySelectorAll(".word_tat")[0].innerHTML
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/add_wordToDict", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            word: word_tat
+        }));
+        document.querySelectorAll(".modal__btn")[0].innerHTML = "Удалить из словарика"
+        document.querySelectorAll(".modal__btn")[0].setAttribute("onclick", "removeWordFromDictionary()")
+    }
+
+    function removeWordFromDictionary() {
+        let word_tat = document.querySelectorAll(".word_tat")[0].innerHTML
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/remove_wordFromDict", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            word: word_tat
+        }));
+    }
+
+    setTimeout(startSelect, 2000)
 
 
 </script>

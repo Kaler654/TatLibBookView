@@ -836,3 +836,9 @@ a.show:hover {
     color: #220c54;
     font-weight: bold;
 }
+
+iframe::selection {
+    background: #FF0099;
+    color: black;
+    text-shadow: none;
+}
