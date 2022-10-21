@@ -60,14 +60,14 @@ def get_translate():
 
 def add_word_to_dict(w):  # принимает татарское слово
     db_sess = db_session.create_session()
-    word_id = db_sess.query(Words.id).filter(Words.word_tat == w).first()
+    word_id = db_sess.query(Words.id).filter(Words.word_tat == w.lower()).first()
     if not word_id:
         new_word = Words()
         new_word.word_tat = w.lower()
         new_word.word_ru = translate_tat_to_rus(w.lower())
         db_sess.add(new_word)
         db_sess.commit()
-    word_id = db_sess.query(Words.id).filter(Words.word_tat == w).first()[0]
+    word_id = db_sess.query(Words.id).filter(Words.word_tat == w.lower()).first()[0]
     new_ass = Users_to_words()
     new_ass.word_id = word_id
     new_ass.user_id = current_user.id
@@ -499,6 +499,7 @@ def training(val):
 def main():
     db_session.global_init(user_name='postgres', user_password='123', host='localhost', port='5432',
                            db_name='tatlib_db')
+    print(generate_password_hash('123'))
     app.run(port=8080, host="127.0.0.1")
 
 

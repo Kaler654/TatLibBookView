@@ -10,10 +10,35 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        {% block content %}{% endblock %}
-    </div>
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/script.js"></script>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__container">
+            <a href="" class="header__logo">
+                <img src="../static/img/logo.png" alt="TatLib">
+            </a>
+            <div class="header__menu menu">
+                <div class="menu__icon">
+                    <span></span>
+                </div>
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li class="menu__item">
+                            <a href="/books_and_texts/0" class="menu__link" data-goto=".hello">Книги</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#" class="menu__link" data-goto=".about">Тренировки</a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="#" class="menu__link" data-goto=".skills">Мои слова</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+</div>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/script.js"></script>
 </body>
 </html>
