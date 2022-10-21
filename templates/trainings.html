@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+
+<div>
+    <div>
+        <div>
+            <div>
+                <a {% if not message %} href="/training/1" {% endif %}>Выбор перевода</a>
+            </div>
+            <div>
+                <a {% if not message %} href="/training/2" {% endif %}>Анаграммы</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -210,6 +210,8 @@
         xhr.send(JSON.stringify({
             word: word_tat
         }));
+        document.querySelectorAll(".modal__btn")[0].innerHTML = "Добавить в словарик"
+        document.querySelectorAll(".modal__btn")[0].setAttribute("onclick", "addWordToDictionary()")
     }
 
     setTimeout(startSelect, 2000)

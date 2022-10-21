@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+
+<div>
+    <div>
+        <form action="" method="post">
+            <h1>Тренировка 1</h1>
+            {{ form.hidden_tag()}}
+            {{ word }}
+            {{ form.answer(type="input") }}
+            {{ form.submit(type="submit") }}
+        </form>
+
+        {% if message %}
+        <div>
+            <div>
+                <strong>Ошибка</strong>
+            </div>
+            <div>
+                {{ message }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

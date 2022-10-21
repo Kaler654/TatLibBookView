@@ -1,10 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-index
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<header class="header">
+    <div class="header__container">
+        <a href="" class="header__logo">
+            <img src="../static/img/logo.png" alt="TatLib">
+        </a>
+        <div class="header__menu menu">
+            <div class="menu__icon">
+                <span></span>
+            </div>
+            <nav class="menu__body">
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="#" class="menu__link" data-goto=".hello">Главная</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link" data-goto=".about">Обо мне</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link" data-goto=".skills">Навыки</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <section class="full-screen">
+        <div class="full-screen__body">
+            <div class="full-screen__title">Платформа для чтения татарских книг</div>
+            <div class="full-screen__circular-arrow"></div>
+        </div>
+        <video autoplay muted loop preload="auto" class="full-screen__video">
+            <source type="video/mp4" src="../static/video/read.mp4">
+        </video>
+    </section>
+
+    <section class="info">
+        <div class="info__container">
+            <div class="info__content">
+                <div class="info__title">Книги на английском с параллельным переводом - как их читать и велика ли польза
+                </div>
+                <div class="info__text">
+                    <p>
+                        Суть нашего проекта заключается в том, чтобы сделать чтение книг на английском языке доступным
+                        для
+                        каждого, и благодаря встроенному переводчику - максимально удобным.
+                    </p>
+                    <p>
+                        К слову о встроенном переводчике - при чтении книги на английском языке, он даст вам перевод
+                        любого
+                        слова на русском языке в нескольких вариантах, а также в случае необходимости поможет перевести
+                        предложение, что делает чтение проще чем к примеру адаптированные книги Ильи Франка, и позволяет
+                        понимать прочитанное не отрываясь от самого сюжета книги.
+                    </p>
+                    <p>
+                        Помимо всего этого, вы всегда можете учить иностранные слова добавив их в свой личный словарь, а
+                        функция "Добавить закладку" поможет в любой момент вернуться к определенному моменту книги, на
+                        котором вы остановились.
+                    </p>
+                    <p>
+                        С каждым днем, наша и без того уже достаточно большая библиотека растет и крепнет, насчитывая
+                        массу
+                        интересных и популярных книг, большая часть из которых - классическая литература. Все книги
+                        разделены на несколько уровней: Легкие, Средние и Сложные, что помогает
+                        читателю выбрать книги на английском по своему уровню и не потеряться среди множества книг.
+                    </p>
+                    <p>
+                        В общем-то здесь все и начнется - добро пожаловать на борт!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+{% endblock %}
