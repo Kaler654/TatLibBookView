@@ -1,33 +1,35 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="form">
-    <div>
-        <form action="" method="post">
-            <h1>Тренировка 1</h1>
-            {{ form.hidden_tag()}}
-            {{ word }}
-            <div>
-                {% for subfield in form.variants %}
-                <tr>
-                    <td>{{ subfield }}</td>
-                    <td>{{ subfield.label }}</td>
-                </tr>
-                {% endfor %}
-            </div>
-            {{ form.submit(type="submit", class="") }}
-        </form>
-
-        {% if message %}
-        <div>
-            <div>
-                <strong>Ошибка</strong>
-            </div>
-            <div>
-                {{ message }}
-            </div>
+<div class="training1">
+    <div class="training1__container">
+        <div class="training1__content">
+            <div class="training1__title">Тренировка</div>
+            <form class="training1__form" action="" method="post">
+                <div class="training1__word">{{ word }}</div>
+                {{ form.hidden_tag()}}
+                <div class="training1__radios">
+                    {% for subfield in form.variants %}
+                    <div class="form_radio_btn">
+                        {{ subfield }}
+                        {{ subfield.label }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {{ form.submit(type="submit", class="training1__btn btn btn--green", value="Готово") }}
+                {% if message %}
+                <div>
+                    <div>
+                        <strong>Ошибка</strong>
+                    </div>
+                    <div>
+                        {{ message }}
+                    </div>
+                </div>
+                {% endif %}
+            </form>
         </div>
-        {% endif %}
     </div>
 </div>
+
 
 {% endblock %}

@@ -279,8 +279,7 @@ def books_and_texts(val):  # ВСЕ КНИГИ (val in [1, 2, 3] то есть �
     if request.method == "POST":
         books = db_sess.query(Books).filter(
             (Books.title.like(f"%{request.form.get('field')}%"))
-            | (Books.author.like(f"%{request.form.get('field')}%"))
-        )
+            | (Books.author.like(f"%{request.form.get('field')}%")))
         return render_template(
             "books_and_texts.html", title="книги и тексты", books=books
         )

@@ -1,54 +1,54 @@
 {% extends "base.html" %} {% block content %}
-
-<div class="container">
-    <div class="books">
-        <div class="books__container">
-            {% set levels = {1: "Легкая", 2: "Средняя", 3: "Сложная" } %}
-            <div class="books__buttons">
-                <div class="book__button button">
-                    <a href="/add_text">+</a>
-                </div>
-                <div class="book__button button">
-                    <a href="/books_and_texts/0">Все</a>
-                </div>
-                <div class="book__button button">
-                    <a href="/books_and_texts/1">Легкие</a>
-                </div>
-                <div class="book__button button">
-                    <a href="/books_and_texts/2">Средние</a>
-                </div>
-                <div class="book__button button">
-                    <a href="/books_and_texts/3">Сложные</a>
-                </div>
-                <div class="book__search">
-                    <form method="POST">
-                        <input class="input_search" type="text" name="field" autocomplete="off" placeholder="Поиск">
-                        <button type="submit" name="search" class="search_button" value="">
-                            <ion-icon class="search_icon" name="search-outline"></ion-icon>
+<div class="all-books">
+    <div class="all-books__container">
+        <div class="all-books__content">
+            <div class="all-books__title">Библиотека книг</div>
+            <div class="all-books__filters">
+                <ul class="all-book__btns">
+                    <li><a class="all-book__btn btn btn--green" href="/add_text">Добавить</a></li>
+                    <li><a class="all-book__btn btn btn--green" href="/books_and_texts/0">Все</a></li>
+                    <li><a class="all-book__btn btn btn--green" href="/books_and_texts/1">Легкие</a></li>
+                    <li><a class="all-book__btn btn btn--green" href="/books_and_texts/2">Средние</a></li>
+                    <li><a class="all-book__btn btn btn--green" href="/books_and_texts/3">Сложные</a></li>
+                </ul>
+                <div class="all-book__search">
+                    <form method="POST" class="all-book__form">
+                        <input class="all-book__input" type="text" name="field" autocomplete="off" placeholder="Поиск">
+                        <button type="submit" name="search" value="" class="all-book__search-btn">
+                            <ion-icon name="search-outline" class="all-search__icon"></ion-icon>
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="books__info">
-                <div class="books__item">
-                    <div class="books__difficulty">Сложность</div>
-                    <div class="books__title">Название</div>
-                    <div class="books__author">Автор</div>
-                    <div class="books__page__count">Страницы</div>
+            <section class="section-plans" id="section-plans">
+                <div class="row all-books__row">
+                    {% for book in books %}
+                    <div class="col-1-of-3">
+                        <div class="card">
+                            <div class="card__side card__side--front-1">
+                                <div class="card__title card__title--1">
+                                    <h4 class="card__heading">{{ book.title }}</h4>
+                                </div>
+                            </div>
+                            <div class="card__side card__side--back card__side--back-1">
+                                {% set levels = {1: "Легкая", 2: "Средняя", 3: "Сложная"} %}
+                                <div class="card__details">
+                                    <ul>
+                                        <li>{{ book.author }}</li>
+                                        <li>{{ levels[book.difficult_level] }}</li>
+                                    </ul>
+                                </div>
+                                <div class="u-center-text u-margin-top-huge">
+                                    <a href="/book_view" class="btn btn--green">Читать</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% for book in books %}
-                <div class="books__item">
-                    <div class="books__difficulty">{{ book.difficult_level }}</div>
-                    <div class="books__title"><a href="/book_view">{{ book.title }}</a></div>
-                    <div class="books__author">{{ book.author }}</div>
-                    <div class="books__page__count">{{ book.pages }}</div>
-                </div>
-                {% endfor %}
-            </div>
+            </section>
         </div>
     </div>
 </div>
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {% endblock %}

@@ -1,39 +1,33 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 
-<div class="form">
-    <div class="form__container">
-        <form action="" class="form__data" method="post" enctype="multipart/form-data">
-            <h1 class="form__title">Добавление Книги</h1>
-            {{ form.hidden_tag()}}
-            <label class="input-file">
-                {{ form.file(class="form__data__file", type="file", id="formFile", placeholder="фото задание (если
-                есть)") }}
-                <span>Выберите файл</span>
-            </label>
-            <div class="form__data__element">
-                {{ form.author(class="form__input", autocomplete="off", id="floatingInput", placeholder="Имя Автора") }}
-            </div>
-            <div class="form__data__element">
-                {{ form.title(class="form__input", autocomplete="off", id="floatingInput", placeholder="Название Книги")
-                }}
-            </div>
-            <div>
-                {{ form.difficult(class="form__data__select", autocomplete="off", id="floatingInput",
+<div class="add-book">
+    <div class="add-book__container">
+        <div class="add-book_content">
+            <div class="add-book_title">Добавление книги</div>
+            <form class="add-book__form" action="" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag()}}
+                <label class="add-book__input-file">
+                    {{ form.file(class="form__data__file", type="file", id="formFile") }}
+                    <span>Выберите файл</span>
+                </label>
+                {{ form.author(class="add-book__input", autocomplete="off", id="floatingInput", placeholder="Имя Автора") }}
+                {{ form.title(class="add-book__input", autocomplete="off", id="floatingInput", placeholder="Название Книги") }}
+                {{ form.difficult(class="add-book__select", autocomplete="off", id="floatingInput",
                 placeholder="текст") }}
-            </div>
-            {{ form.submit(type="submit", class="button training__button") }} {% if message %}
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true"
-                 style="position: absolute; bottom: 100px; right: 20px;" data-bs-delay="2000" data-bs-autohide="false">
-                <div class="toast-header">
-                    <strong>Ошибка</strong>
-                    <button type="button" data-bs-dismiss="toast" aria-label="Close"></button>
+                {{ form.submit(type="submit", class="add-book__btn btn btn--green") }}
+                {% if message %}
+                <div>
+                    <div>
+                        <strong>Ошибка</strong>
+                    </div>
+                    <div>
+                        {{ message }}
+                    </div>
                 </div>
-                <div class="toast-body">
-                    {{ message }}
-                </div>
-            </div>
-            {% endif %}
-        </form>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </div>
 
